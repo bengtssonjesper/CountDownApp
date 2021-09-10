@@ -1,7 +1,11 @@
+const weeks = document.querySelector("#weeks");
 const days = document.querySelector("#days");
 const hours = document.querySelector("#hours");
 const minutes = document.querySelector("#minutes");
 const seconds = document.querySelector("#seconds");
+const weeksDescription = document.querySelector("#weeksDescription");
+
+var showWeeks = false;
 var countdownDate = new Date("1 Jan 2022");
 const monthNames = [
   "January",
@@ -19,12 +23,22 @@ const monthNames = [
 ];
 
 function updateCountdown() {
-  const timeNow = new Date();
-  const totalSeconds = (countdownDate - timeNow) / 1000;
-  const daysLeft = Math.floor(totalSeconds / 60 / 60 / 24);
-  const hoursLeft = Math.floor(totalSeconds / 60 / 60) % 24;
-  const minutesLeft = Math.floor(totalSeconds / 60) % 60;
-  const secondsLeft = Math.floor(totalSeconds) % 60;
+  var timeNow = new Date();
+  var daysLeft = 0;
+  var weeksLeft = 0;
+  var totalSeconds = (countdownDate - timeNow) / 1000;
+  if (showWeeks) {
+    daysLeft = Math.floor(totalSeconds / 60 / 60 / 24) % 7;
+    weeksLeft = Math.floor(totalSeconds / 60 / 60 / 24 / 7);
+    weeks.innerHTML = weeksLeft;
+  } else {
+    daysLeft = Math.floor(totalSeconds / 60 / 60 / 24);
+  }
+
+  var hoursLeft = Math.floor(totalSeconds / 60 / 60) % 24;
+  var minutesLeft = Math.floor(totalSeconds / 60) % 60;
+  var secondsLeft = Math.floor(totalSeconds) % 60;
+
   days.innerHTML = daysLeft;
   hours.innerHTML = hoursLeft;
   minutes.innerHTML = minutesLeft;
@@ -45,6 +59,18 @@ function applyDate() {
   document.getElementById("yearText").innerHTML = selectedYear;
 }
 
+function changeFormat() {
+  showWeeks = !showWeeks;
+  if (!showWeeks) {
+    weeksDescription.innerHTML = "";
+    weeks.innerHTML = "";
+  } else {
+    weeksDescription.innerHTML = "Weeks";
+  }
+  updateCountdown();
+}
+
 document.getElementById("applyDate").addEventListener("click", applyDate);
+document.getElementById("changeFormat").addEventListener("click", changeFormat);
 
 setInterval(updateCountdown, 1000);
