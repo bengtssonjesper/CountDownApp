@@ -7,7 +7,7 @@ const weeksDescription = document.querySelector("#weeksDescription");
 
 var showWeeks = false;
 
-var countdownDate = new Date("1 Jan 2022");
+var countdownDate = new Date("10 Dec 2021");
 
 const monthDaysObject = [
   {
