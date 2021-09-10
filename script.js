@@ -6,6 +6,7 @@ const seconds = document.querySelector("#seconds");
 const weeksDescription = document.querySelector("#weeksDescription");
 
 var showWeeks = false;
+var showOwnDate = false;
 
 var countdownDate = new Date("10 Dec 2021");
 
@@ -139,7 +140,7 @@ function changeMonth() {
 
   //Re-Add the descriptive text
   const daysSelectDescription = document.createElement("option");
-  daysSelectDescription.innerHTML = "--Please choose an option--";
+  daysSelectDescription.innerHTML = "--Choose an option--";
   daysSelectDescription.value = 0;
   daysSelector.appendChild(daysSelectDescription);
 
@@ -152,9 +153,25 @@ function changeMonth() {
   }
 }
 
+function toggleOwnDate() {
+  showOwnDate = !showOwnDate;
+  const toggleOwnDateBtn = document.getElementById("toggleOwnDate");
+  const ownDateDiv = document.getElementById("selectOwnDate");
+  if (showOwnDate) {
+    ownDateDiv.style.display = "flex";
+    toggleOwnDateBtn.innerHTML = "Hide Own Date";
+  } else {
+    ownDateDiv.style.display = "none";
+    toggleOwnDateBtn.innerHTML = "Pick Own Date";
+  }
+}
+
 document.getElementById("applyDate").addEventListener("click", applyDate);
 document.getElementById("changeFormat").addEventListener("click", changeFormat);
 document.getElementById("month-select").addEventListener("change", changeMonth);
+document
+  .getElementById("toggleOwnDate")
+  .addEventListener("click", toggleOwnDate);
 
 init();
 setInterval(updateCountdown, 1000);

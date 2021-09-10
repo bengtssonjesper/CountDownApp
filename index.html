@@ -9,20 +9,30 @@
     <title>Count Down App</title>
   </head>
   <body>
-    <label for="year-select">Choose a year:</label>
-    <select name="year" id="year-select">
-      <option value="">--Please choose an option--</option>
-    </select>
-    <label for="month-select">Choose a month:</label>
-    <select name="month" id="month-select">
-      <option value="">--Please choose an option--</option>
-    </select>
-    <label for="day-select">Choose a Day:</label>
-    <select name="day" id="day-select">
-      <option value="">--Please choose an option--</option>
-      <option value="">Please select a month first</option></select
-    ><br />
-    <button id="applyDate">Apply date</button>
+    <div id="selectOwnDate">
+      <div class="selectEl">
+        <label for="year-select">Choose a year:</label>
+        <select name="year" id="year-select">
+          <option value="">--Choose an option--</option>
+        </select>
+      </div>
+      <div class="selectEl">
+        <label for="month-select">Choose a month:</label>
+        <select name="month" id="month-select">
+          <option value="">--Choose an option--</option>
+        </select>
+      </div>
+      <div class="selectEl">
+        <label for="day-select">Choose a Day:</label>
+        <select name="day" id="day-select">
+          <option value="">--Choose an option--</option>
+          <option value="">Please select a month first</option>
+        </select>
+      </div>
+      <br />
+      <button id="applyDate">Apply</button>
+    </div>
+    <button id="toggleOwnDate">Pick Own Date</button>
     <h1 id="heading">
       Time until <span id="dayText">Svealandsmästerskapen:</span>
       <span id="monthText"></span><span id="yearText"></span>
